@@ -76,8 +76,8 @@ def main():
     #     prediction = response.json()["prediction"] * 100
 
     #     st.success(f"Successfully Predict! (Good Score Percentage : {prediction}) %")
-        
-        
+
+
     if st.sidebar.button("Predict"):
         input_data = {
         "RevolvingUtilizationOfUnsecuredLines": [RevolvingUtilizationOfUnsecuredLines],
@@ -91,13 +91,13 @@ def main():
         "DaysPastDueNotWorse_60_89": [DaysPastDueNotWorse_60_89],
         "NumberOfDependents": [NumberOfDependents],
     }
-    
+
         df = pd.DataFrame.from_dict(input_data)
 
         print(df)
 
-        model = joblib.load("/mount/src/data_engineer_streamlit_airflow/airflow/plugins/project_streamlit/pages/best_model.pkl")
-        scaler = joblib.load("/mount/src/data_engineer_streamlit_airflow/airflow/plugins/project_streamlit/pages/std_scaler.pkl")
+        model = joblib.load("/app/pages/best_model.pkl")
+        scaler = joblib.load("/app/pages/std_scaler.pkl")
 
         print('SUCCESS LOAD MODEL')
 

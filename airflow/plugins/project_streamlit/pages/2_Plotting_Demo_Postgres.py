@@ -9,7 +9,7 @@ st.set_page_config(page_title="Plotting Demo Postgres", page_icon="📈")
 st.sidebar.header("📈 Plotting Demo Postgres")
 
 # Database connection settings
-DB_HOST = "<YOUR-IP-ADDRESS>"
+DB_HOST = "localhost"
 DB_NAME = "postgres"
 DB_USER = "postgres"
 DB_PASSWORD = "secret"
@@ -60,8 +60,8 @@ def main():
 
     ######################################################
 
-    query = """ 
-            SELECT 
+    query = """
+            SELECT
                 t.transaction_date,
                 t.transaction_amount,
                 tp.transaction_type_description
@@ -154,7 +154,7 @@ def streaming_data(text_placeholder):
 
 def main_local():
 
-    data = pd.read_csv('/mount/src/data_engineer_streamlit_airflow/airflow/plugins/project_streamlit/pages/data_postgres_local.csv')
+    data = pd.read_csv('/app/pages/data_postgres_local.csv')
     data['transaction_date'] = pd.to_datetime(data['transaction_date']).dt.date
 
     min_date, max_date = data["transaction_date"].min(), data["transaction_date"].max()
@@ -212,10 +212,10 @@ def main_local():
 if __name__ == "__main__":
     #importing the os module
     import os
-    
+
     #to get the current working directory
     directory = os.getcwd()
-    
+
     st.text(directory)
     # main()
     main_local()
